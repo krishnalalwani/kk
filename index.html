@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Haven - Plant Nursery</title>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Link CSS File -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fa-solid fa-seedling"></i> Green Haven
+            </div>
+            <button class="cart-btn" onclick="toggleCart()">
+                <i class="fa-solid fa-cart-shopping"></i> Cart (<span id="cart-count">0</span>)
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Bring Nature Into Your Home</h1>
+        <p>Explore our wide collection of healthy indoor, outdoor, and pet-friendly plants with complete care guidance.</p>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        
+        <!-- Controls: Search, Filters & Price Range -->
+        <div class="controls-bar">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="Search plants by name..." oninput="filterPlants()">
+            </div>
+
+            <div class="category-filters">
+                <button class="filter-btn active" onclick="setCategory('all', this)">All Plants</button>
+                <button class="filter-btn" onclick="setCategory('indoor', this)">Indoor</button>
+                <button class="filter-btn" onclick="setCategory('outdoor', this)">Outdoor</button>
+                <button class="filter-btn" onclick="setCategory('pet', this)">Pet Friendly 🐾</button>
+            </div>
+
+            <div class="price-filter">
+                <label for="priceRange">Max Price: ₹<span id="priceValue">1000</span></label>
+                <input type="range" id="priceRange" min="200" max="1000" step="50" value="1000" oninput="filterPlants()">
+            </div>
+        </div>
+
+        <!-- Plant Grid -->
+        <div class="plant-grid" id="plantGrid">
+            <!-- Dynamic Plants will load here via JavaScript -->
+        </div>
+
+    </div>
+
+    <!-- Cart Modal Drawer -->
+    <div class="modal-overlay" id="cartModal" onclick="checkOutsideClick(event)">
+        <div class="cart-drawer">
+            <div class="cart-header">
+                <h2>Your Shopping Cart</h2>
+                <button class="close-cart" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="cart-items" id="cartItemsContainer">
+                <p style="color: var(--gray); text-align: center; margin-top: 20px;">Your cart is empty.</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cartTotalPrice">₹0</span>
+                </div>
+                <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link JavaScript File -->
+    <script src="script.js"></script>
+</body>
+</html>
